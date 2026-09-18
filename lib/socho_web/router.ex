@@ -102,4 +102,12 @@ defmodule SochoWeb.Router do
       live "/clients/:id/edit", ClientLive.Edit, :edit
     end
   end
+
+  # Noise Routes
+  scope "/", SochoWeb do
+    pipe_through :browser
+
+    get "/apple-touch-icon.png", PageController, :no_content
+    get "/apple-touch-icon-precomposed.png", PageController, :no_content
+  end
 end

@@ -15,7 +15,7 @@ defmodule Socho.SMS.Adapters.Msg91 do
   @behaviour Socho.SMS.Adapter
 
   # Refer to console on msg91 for this (https://control.msg91.com/app/m/l/sms/templates)
-  @template_otp_verification "6abf5e2d5a17f739ad0631b2"
+  @template_otp_verification "6ac4c40e6c8cb16130015168"
 
   defp base_req do
     config = Application.get_env(:socho, Socho.SMS, [])
@@ -37,10 +37,13 @@ defmodule Socho.SMS.Adapters.Msg91 do
   """
   @impl true
   def send_otp(mobile, var) do
+    username = var["username"] || "user"
+    otp = var["OTP"]
+
     data = %{
       "template_id" => @template_otp_verification,
       "short_url" => "0",
-      "recipients" => [%{"mobiles" => mobile, "var" => var}]
+      "recipients" => [%{"mobiles" => mobile, "username" => username, "otp" => otp}]
     }
 
     case Req.post(base_req(), url: "/flow", json: data) do

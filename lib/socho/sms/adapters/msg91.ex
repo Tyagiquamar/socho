@@ -33,7 +33,7 @@ defmodule Socho.SMS.Adapters.Msg91 do
   @doc """
   Sends an SMS to user with an OTP in it.
 
-  For this to work correctly, a template should be whitelisted on a DLT provider and this template needs to be added on the SMS vendor like MSG91.
+  For this to work correctly, a template should be whitelisted on a DLT provider and this template needs to be added on the SMS vendor like MSG91. The expected shape of var is %{"username" => "string", "otp" => "4_digit_OTP"}
   """
   @impl true
   def send_otp(mobile, var) do

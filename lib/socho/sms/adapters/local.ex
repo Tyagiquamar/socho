@@ -10,7 +10,13 @@ defmodule Socho.SMS.Adapters.Local do
   require Logger
 
   @impl true
-  def send_sms(to, body) do
+  def send_otp(to, body) do
+    Logger.debug("[SMS Local] To: #{to} | #{body}")
+    :ok
+  end
+
+  @impl true
+  def send_forget_password(to, body) do
     Logger.debug("[SMS Local] To: #{to} | #{body}")
     :ok
   end
